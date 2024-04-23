@@ -1,4 +1,4 @@
-package plugin
+gpackage plugin
 
 const (
 	GatewayAPIUpdateError                    = "error updating Gateway API %q: %s"
@@ -8,5 +8,5 @@ const (
 	BackendRefWasNotFoundInHTTPRouteError    = "backendRef was not found in httpRoute"
 	BackendRefWasNotFoundInTCPRouteError     = "backendRef was not found in tcpRoute"
 	BackendRefListWasNotFoundInTCPRouteError = "backendRef list was not found in tcpRoute"
-	ManagedRouteMapEntryDeleteError          = "can't delete key %q from managedRouteMap. The key %q is not in the managedRouteMap"
+	ManagedRouteMapEntryDeleteError          = "can't delete key %q from managedRouteMap. The key %q is not in the managedRouteMap "
 )
