@@ -1,4 +1,4 @@
-gpackage plugin
+package plugin
 
 const (
 	GatewayAPIUpdateError                    = "error updating Gateway API %q: %s"
