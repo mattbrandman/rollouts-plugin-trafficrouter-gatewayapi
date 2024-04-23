@@ -13,9 +13,9 @@ import (
 	"github.com/stretchr/testify/assert"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/kubernetes/fake"
-	"sigs.k8s.io/gateway-api/apis/v1beta1"
 
 	log "github.com/sirupsen/logrus"
+	gv1 "sigs.k8s.io/gateway-api/apis/v1"
 	gwFake "sigs.k8s.io/gateway-api/pkg/client/clientset/versioned/fake"
 
 	goPlugin "github.com/hashicorp/go-plugin"
@@ -159,7 +159,7 @@ func TestRunSuccessfully(t *testing.T) {
 	t.Run("SetHTTPHeaderRoute", func(t *testing.T) {
 		headerName := "X-Test"
 		headerValue := "test"
-		headerValueType := v1beta1.HeaderMatchRegularExpression
+		headerValueType := gv1.HeaderMatchRegularExpression
 		prefixedHeaderValue := headerValue + ".*"
 		headerMatch := v1alpha1.StringMatch{
 			Prefix: headerValue,

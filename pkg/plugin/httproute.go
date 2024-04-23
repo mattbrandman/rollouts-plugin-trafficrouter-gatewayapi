@@ -9,6 +9,7 @@ import (
 	"github.com/argoproj/argo-rollouts/pkg/apis/rollouts/v1alpha1"
 	pluginTypes "github.com/argoproj/argo-rollouts/utils/plugin/types"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+	gv1 "sigs.k8s.io/gateway-api/apis/v1"
 	"sigs.k8s.io/gateway-api/apis/v1beta1"
 )
 
@@ -221,19 +222,19 @@ func getHTTPHeaderRouteRuleList(headerRouting *v1alpha1.SetHeaderRoute) ([]v1bet
 	httpHeaderRouteRuleList := []v1beta1.HTTPHeaderMatch{}
 	for _, headerRule := range headerRouting.Match {
 		httpHeaderRouteRule := v1beta1.HTTPHeaderMatch{
-			Name: v1beta1.HTTPHeaderName(headerRule.HeaderName),
+			Name: gv1.HTTPHeaderName(headerRule.HeaderName),
 		}
 		switch {
 		case headerRule.HeaderValue.Exact != "":
-			headerMatchType := v1beta1.HeaderMatchExact
+			headerMatchType := gv1.HeaderMatchExact
 			httpHeaderRouteRule.Type = &headerMatchType
 			httpHeaderRouteRule.Value = headerRule.HeaderValue.Exact
 		case headerRule.HeaderValue.Prefix != "":
-			headerMatchType := v1beta1.HeaderMatchRegularExpression
+			headerMatchType := gv1.HeaderMatchRegularExpression
 			httpHeaderRouteRule.Type = &headerMatchType
 			httpHeaderRouteRule.Value = headerRule.HeaderValue.Prefix + ".*"
 		case headerRule.HeaderValue.Regex != "":
-			headerMatchType := v1beta1.HeaderMatchRegularExpression
+			headerMatchType := gv1.HeaderMatchRegularExpression
 			httpHeaderRouteRule.Type = &headerMatchType
 			httpHeaderRouteRule.Value = headerRule.HeaderValue.Regex
 		default:

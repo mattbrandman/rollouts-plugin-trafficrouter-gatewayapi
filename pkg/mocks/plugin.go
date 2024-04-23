@@ -6,6 +6,7 @@ import (
 
 	"sigs.k8s.io/gateway-api/apis/v1alpha2"
 
+	gv1 "sigs.k8s.io/gateway-api/apis/v1"
 	"sigs.k8s.io/gateway-api/apis/v1beta1"
 )
 
@@ -22,11 +23,11 @@ const (
 )
 
 var (
-	port                     = v1beta1.PortNumber(80)
+	port                     = gv1.PortNumber(80)
 	weight             int32 = 0
-	httpPathMatchType        = v1beta1.PathMatchPathPrefix
+	httpPathMatchType        = gv1.PathMatchPathPrefix
 	httpPathMatchValue       = "/"
-	httpPathMatch            = v1beta1.HTTPPathMatch{
+	httpPathMatch            = gv1.HTTPPathMatch{
 		Type:  &httpPathMatchType,
 		Value: &httpPathMatchValue,
 	}
@@ -37,7 +38,7 @@ var HTTPRouteObj = v1beta1.HTTPRoute{
 		Name:      HTTPRouteName,
 		Namespace: RolloutNamespace,
 	},
-	Spec: v1beta1.HTTPRouteSpec{
+	Spec: gv1.HTTPRouteSpec{
 		CommonRouteSpec: v1beta1.CommonRouteSpec{
 			ParentRefs: []v1beta1.ParentReference{
 				{
