@@ -1,6 +1,6 @@
 module github.com/argoproj-labs/rollouts-plugin-trafficrouter-gatewayapi
 
-go 1.22
+go 1.22.0
 
 require (
 	github.com/argoproj/argo-rollouts v1.5.1
